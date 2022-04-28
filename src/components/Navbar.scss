@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: inline-block;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item>a {
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    background-color: white;
+}
+
+@media screen and (max-width:800px) {
+    .nav-links {
+        flex-direction: column;
+    }
+}
