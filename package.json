@@ -16,6 +16,7 @@
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.3.1",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
@@ -24,7 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev-server":"json-server --watch ./src/redux/data.json --port 3010",
+    "dev-server": "json-server --watch ./src/redux/data.json --port 3010",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

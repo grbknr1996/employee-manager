@@ -9,18 +9,23 @@ import saga from "./saga";
 const employeeSlice = createSlice({
   name: "employee",
   initialState: {
-    employees: []
+    employees: [],
   },
   reducers: {
     fetchEmployees: (state, action) => {
       return {
+        ...state,
         employees: action.payload
       };
+    },
+    deleteEmployeeStore:(state,action)=>{
+      state.employees = state.employees.filter(i => i['id'] !== action.payload)
+     return state
     }
   }
 });
 
-export const { fetchEmployees } = employeeSlice.actions;
+export const { fetchEmployees,deleteEmployeeStore } = employeeSlice.actions;
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];

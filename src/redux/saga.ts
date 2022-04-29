@@ -1,18 +1,33 @@
 import { call, takeEvery, put } from "redux-saga/effects";
-import { fetchEmployees } from "./store";
+import { fetchEmployees ,deleteEmployeeStore} from "./store";
 import { sagaActions } from "./sagaActions";
-import { fetchEmployee } from "./api";
+import { deleteEmployee, fetchEmployee } from "./api";
 
 
 export function* fetchEmployeesSaga():any {
   try {
-    let result = yield call(fetchEmployee);
-    yield put(fetchEmployees(result.data));
+    const users = yield fetchEmployee()
+    yield put(fetchEmployees(users.data))
   } catch (e) {
     yield put({ type: "EMPLOYEES_FETCH_FAILED" });
   }
 }
 
+export function* deleteEmployeeSaga(action:any):any{
+  try {
+    yield  deleteEmployee(action.id);
+    yield put(deleteEmployeeStore(action.id));
+    
+  } catch (error) {
+     yield put({ type: "EMPLOYEE_DELETE_FAILED" });
+  }
+}
+
+
+
+
 export default function* rootSaga() {
   yield takeEvery(sagaActions.FETCH_EMPLOYEES_SAGA, fetchEmployeesSaga);
+  yield  takeEvery(sagaActions.DELETE_EMPLOYEE_SAGA,deleteEmployeeSaga);
 }
+

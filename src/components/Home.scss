@@ -73,3 +73,14 @@ body {
 .row-sub-container .row-item:last-child {
     border-bottom: 0;
 }
+.changeColor {
+    color: black;
+}
+
+.edit:hover {
+    color: blue;
+}
+
+.delete:hover {
+    color: red;
+}
