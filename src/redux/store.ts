@@ -6,6 +6,7 @@ import {
 import createSagaMiddleware from "redux-saga";
 import saga from "./saga";
 
+
 const employeeSlice = createSlice({
   name: "employee",
   initialState: {
@@ -21,11 +22,15 @@ const employeeSlice = createSlice({
     deleteEmployeeStore:(state,action)=>{
       state.employees = state.employees.filter(i => i['id'] !== action.payload)
      return state
-    }
+    },
+    updateEmployeeStore: (state, action) => {
+      state.employees = state.employees.map(i => i['id'] === action.payload.id ? action.payload : i) as never;
+      return state
+    },
   }
 });
 
-export const { fetchEmployees,deleteEmployeeStore } = employeeSlice.actions;
+export const { fetchEmployees,deleteEmployeeStore,updateEmployeeStore } = employeeSlice.actions;
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];

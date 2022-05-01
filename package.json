@@ -12,6 +12,7 @@
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.0",
     "axios": "^0.27.2",
+    "formik": "^2.2.9",
     "json-server": "^0.17.0",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
@@ -22,7 +23,8 @@
     "react-scripts": "5.0.1",
     "redux-saga": "^1.1.3",
     "typescript": "^4.6.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "dev-server": "json-server --watch ./src/redux/data.json --port 3010",

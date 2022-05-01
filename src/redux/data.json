@@ -1,19 +1,16 @@
 {
-    "employee": [{
-        "id": 1,
-        "name": "Ram",
-        "designation": "Director",
-        "address": "Chennai"
-    }, {
-        "id": 2,
-        "name": "Gourab",
-        "designation": "Engineer",
-        "address": "Kolkata"
-    }, 
+  "employee": [
     {
-        "id": 3,
-        "name": "Shayam",
-        "designation": "Analyst",
-        "address": "Delhi"
+      "id": 1,
+      "name": "Ram",
+      "designation": "Director",
+      "address": "Chennai"
+    },
+    {
+      "id": 2,
+      "name": "Gourab",
+      "designation": "Engineer",
+      "address": "Kolkata"
     }
-]}
+  ]
+}
