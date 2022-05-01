@@ -26,8 +26,8 @@ export function* deleteEmployeeSaga(action:any):any{
 export function* updateEmployeeSaga(action:any):any{
   try {
   
-    yield updateEmployee(action.id,action.user)
-    yield put(updateEmployeeStore(action.user))
+    yield updateEmployee(action.id,action.employee)
+    yield put(updateEmployeeStore(action.employee))
 
   } catch (error) {
      yield put({ type: "EMPLOYEE_UPDATE_FAILED" });

@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const employees = useSelector((state: any) => state.employees.employees);
   const [edit, setEdit] = useState({ edit: false, id: null as any });
-  const [editInfo, setEditInfo] = useState(employees);
+  const [editInfo, setEditInfo] = useState({});
   const initialValues = {
     id: "",
     name: "",
@@ -29,11 +29,6 @@ const Home: React.FC = () => {
     dispatch({ type: sagaActions.FETCH_EMPLOYEES_SAGA });
   }, []);
 
-  useEffect(() => {
-    setInfo();
-  }, [employees]);
-
-  const setInfo = () => setEditInfo(employees);
   const handleEdit = (e: React.MouseEvent, index: number) => {
     console.log(index);
     setEdit({ edit: true, id: index });
@@ -42,18 +37,29 @@ const Home: React.FC = () => {
   const handleDelete = (e: React.MouseEvent, index: number) => {
     dispatch({ type: sagaActions.DELETE_EMPLOYEE_SAGA, id: index });
   };
-  const toggleEdit = (e: React.FormEvent) => {
+  const toggleEdit = (e: React.FormEvent, index: number) => {
+    e.preventDefault();
     console.log("edit toggle");
     setEdit({ edit: false, id: null as any });
-    dispatch({ type: sagaActions.UPDATE_EMPLOYEE_SAGA });
+    console.log(editInfo);
+    dispatch({
+      type: sagaActions.UPDATE_EMPLOYEE_SAGA,
+      id: index + 1,
+      employee: editInfo,
+    });
   };
 
   const handleEditChange = (e: any, index: number) => {
-    setEditInfo(
-      employees.map((emp: any) =>
-        emp.id === index ? (emp.name = e.target.value) : emp
-      )
-    );
+    const name = e.target.name;
+    const value = e.target.value;
+    const employee = employees[index];
+    console.log("emp===" + JSON.stringify(employee));
+    const updatedres = {
+      ...employee,
+      [name]: value,
+    };
+    setEditInfo(updatedres);
+    console.log(updatedres);
   };
 
   return (
@@ -67,7 +73,7 @@ const Home: React.FC = () => {
           <div className="row-item">ACTIONS</div>
         </div>
 
-        {editInfo.map((emp: any, index: number) =>
+        {employees.map((emp: any, index: number) =>
           edit.edit && edit.id === index ? (
             <>
               <form>
@@ -81,13 +87,23 @@ const Home: React.FC = () => {
                     defaultValue={emp.name}
                     onChange={(e) => handleEditChange(e, index)}
                   />
-                  <input className="row-item" value={emp.designation} />
-                  <input className="row-item" value={emp.address} />
+                  <input
+                    className="row-item"
+                    name="designation"
+                    defaultValue={emp.designation}
+                    onChange={(e) => handleEditChange(e, index)}
+                  />
+                  <input
+                    className="row-item"
+                    name="address"
+                    defaultValue={emp.address}
+                    onChange={(e) => handleEditChange(e, index)}
+                  />
                   <div className="row-item">
                     <button type="submit">
                       <MdDone
                         className="changeColor done"
-                        onClick={(e) => toggleEdit(e)}
+                        onClick={(e) => toggleEdit(e, index)}
                       />
                     </button>
                   </div>

@@ -9,6 +9,6 @@ export const deleteEmployee=async(id:number)=>{
  return axios.delete(`http://localhost:3010/employee/${id}`);
 }
 
-export const updateEmployee=async(id:number,employee:Employee)=>{
+export const updateEmployee=async(id:number,employee:any)=>{
  return axios.put(`http://localhost:3010/employee/${id}`,employee);
 }
