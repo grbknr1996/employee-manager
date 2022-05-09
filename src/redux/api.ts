@@ -12,3 +12,7 @@ export const deleteEmployee=async(id:number)=>{
 export const updateEmployee=async(id:number,employee:any)=>{
  return axios.put(`http://localhost:3010/employee/${id}`,employee);
 }
+
+export const createEmployee=async(employee:any)=>{
+  return axios.post(`http://localhost:3010/employee`,employee)
+}

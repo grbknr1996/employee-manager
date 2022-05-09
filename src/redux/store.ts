@@ -27,10 +27,14 @@ const employeeSlice = createSlice({
       state.employees = state.employees.map(i => i['id'] === action.payload.id ? action.payload : i) as never;
       return state
     },
+    createEmployeeStore:(state,action)=>{
+       state.employees.push(action.payload as never);
+        return state
+    }
   }
 });
 
-export const { fetchEmployees,deleteEmployeeStore,updateEmployeeStore } = employeeSlice.actions;
+export const { fetchEmployees,deleteEmployeeStore,updateEmployeeStore,createEmployeeStore } = employeeSlice.actions;
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];

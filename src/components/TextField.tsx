@@ -2,12 +2,7 @@ import React from "react";
 import { useField } from "formik";
 import "./TextField.scss";
 
-interface Props {
-  label: string;
-  name: string;
-  type: string;
-}
-const TextField: React.FC<Props> = ({ label, ...props }) => {
+const TextField: React.FC<any> = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sagaActions } from "../redux/sagaActions";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import { FormikBag, useFormik } from "formik";
+import { useFormik } from "formik";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
                     onChange={(e) => handleEditChange(e, index)}
                   />
                   <div className="row-item">
-                    <button type="submit">
+                    <button>
                       <MdDone
                         className="changeColor done"
                         onClick={(e) => toggleEdit(e, index)}

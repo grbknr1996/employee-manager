@@ -1,7 +1,7 @@
 import {  takeEvery, put } from "redux-saga/effects";
-import { fetchEmployees ,deleteEmployeeStore,updateEmployeeStore} from "./store";
+import { fetchEmployees ,deleteEmployeeStore,updateEmployeeStore,createEmployeeStore} from "./store";
 import { sagaActions } from "./sagaActions";
-import { deleteEmployee, fetchEmployee, updateEmployee } from "./api";
+import { deleteEmployee, fetchEmployee, updateEmployee,createEmployee} from "./api";
 
 
 export function* fetchEmployeesSaga():any {
@@ -34,11 +34,23 @@ export function* updateEmployeeSaga(action:any):any{
   }
 }
 
+export function* createEmployeeSaga(action:any):any{
+  try {
+  
+    yield createEmployee(action.employee)
+    yield put(createEmployeeStore(action.employee))
+
+  } catch (error) {
+     yield put({ type: "EMPLOYEE_CREATION_FAILED" });
+  }
+}
+
 
 
 export default function* rootSaga() {
   yield takeEvery(sagaActions.FETCH_EMPLOYEES_SAGA, fetchEmployeesSaga);
   yield  takeEvery(sagaActions.DELETE_EMPLOYEE_SAGA,deleteEmployeeSaga);
    yield  takeEvery(sagaActions.UPDATE_EMPLOYEE_SAGA,updateEmployeeSaga);
+    yield  takeEvery(sagaActions.CREATE_EMPLOYEE_SAGA,createEmployeeSaga);
 }
 
